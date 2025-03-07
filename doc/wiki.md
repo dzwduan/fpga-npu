@@ -40,6 +40,8 @@ patch: 用于运行真实FPGA的，需要设备
 
 1. [Nurvitadhi, D. Kwon, A. Jafari, A. Boutros, J. Sim, P. Tomson, H. Sumbul, G. Chen, P. Knag, R. Kumar, R. Krishnamurthy, S. Gribok, B. Pasca, M. Langhammer, D. Marr, and A. Dasu. "Evaluating and Enhancing Intel Stratix 10 FPGAs for Persistent Real-Time AI". In the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA), 2019.](../doc/06_Evaluating_The_Highly-Pipelined_Intel_Stratix_10_FPGA_Architecture_Using_Open-Source_Benchmarks.pdf)
 
+1. [nside Project Brainwave’s Cloud-Scale, Real-Time AI Processor](../doc/07_Inside_Project_Brainwaves_Cloud-Scale_Real-Time_AI_Processor.pdf)
+
 ## Citation
 If you use the NPU code in this repo for your research, please cite the following paper:
 
