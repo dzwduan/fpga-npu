@@ -1,53 +1,47 @@
+# 官方Wiki中文版
 
-What is the Neural Processing Unit?
-The Neural Processing Unit (NPU) is an FPGA soft processor (i.e., overlay) architecture for low latency, low batch AI inference. It adopts the "persistent AI" approach, in which all model weights are kept persistent in the on-chip SRAM memory of one or more network-connected FPGAs to eliminate the expensive off-chip memory accesses. The NPU is a domain-specific software-programmable processor. Therefore, once the NPU bitstream is compiled and deployed on an FPGA, users can rapidly program it to run different AI workloads using a high-level domain-specific language or a deep learning framework (e.g. TensorFlow Keras) purely in software. This approach enables AI application developers to use FPGAs for AI inference acceleration without the need for FPGA design expertise or suffering from the long runtime of FPGA CAD tools.
+## 什么是神经处理单元（NPU）？
+神经处理单元（NPU）是一种基于FPGA的软核处理器（即覆盖层架构），专为低延迟、小批量AI推理设计。其采用"持久化AI"方法，将所有权重参数持久化存储在一个或多个网络互联FPGA的片上SRAM存储器中，以消除昂贵的片外存储器访问。NPU属于领域专用型软件可编程处理器。因此，一旦NPU比特流在FPGA上完成编译部署，用户即可通过高级领域专用语言或深度学习框架（如TensorFlow Keras）在纯软件层面快速编程运行不同AI工作负载。该方法使AI应用开发者无需FPGA设计专业知识或承受FPGA CAD工具的长时延，即可利用FPGA进行AI推理加速。
 
-The current version of the NPU supports a variety of AI inference workloads such as multi-layer perceptron (MLP), recurrent neural network (RNN), gated recurrent unit (GRU), and long short-term memory (LSTM) models. All these models are more memory-bound with low data reuse, which benefit greatly from the tremendous on-chip bandwidth between the SRAM memories and compute units in the FPGA. However, the NPU architecture and ISA are extendable to support other AI workloads.
+当前版本NPU支持多种AI推理负载，包括多层感知机（MLP）、循环神经网络（RNN）、门控循环单元（GRU）和长短期记忆（LSTM）模型。这些模型普遍具有高存储带宽需求与低数据复用特性，因此能够充分利用FPGA中SRAM存储器与计算单元之间的片上超大带宽优势。NPU架构及其指令集（ISA）具有可扩展性，可支持更多AI工作负载。
 
-The NPU Framework
-The NPU framework consists of:
+## NPU框架体系
+NPU框架包含以下核心组件：
+NPU覆盖层：基于SystemVerilog RTL实现的NPU硬件架构，针对Intel Stratix 10 NX FPGA进行深度优化。该架构经高度优化可生成单一高质量比特流，部署于FPGA后支持纯软件编程实现不同工作负载。
 
-NPU Overlay: This is the hardware implementation of the NPU architecture coded in SystemVerilog RTL and optimized for Intel's Stratix 10 NX FPGA. This architecture is highly optimized to generate a single high-quality bitstream, which is deployed on the FPGA and can be programmed with different workloads purely from software.
-Instruction Set Architecture (ISA): This is the intermediate layer between the NPU hardware and its software stack. The NPU uses a very long instruction word (VLIW), which we refer to as an "instruction chain", that controls a number of coarse-grained chained processing units. Each instruction chain can trigger the execution of thousands of operations, similar in nature to CISC instructions.
-NPU Compiler: This translates a user input workload written as a Tensorflow Keras sequential model into an NPU executable binary. The NPU compiler implements low-level APIs for each of the operations supported by the NPU architecture (e.g., matrix-vector multiplication, addition, activation, etc.). Then, it builds Keras APIs for supported models/layers (e.g., Dense, RNN, GRU, LSTM) using these low-level APIs. The output of the compiler is binary VLIW instructions that can be sent and executed on the NPU overlay.
-Functional Simulator: This simulates the compiled NPU instructions functionally to verify that they implement the intended functionality and generate golden results for C++ and RTL simulation.
-C++ Simulator: This is a detailed NPU performance simulator written in C++ to provide fast and reliable performance estimates for running the compiled NPU program on an NPU architecture with specific architecture parameters. This can be used for rapid exploration of the NPU overlay design space and NPU program optimization.
-RTL Simulation: This is the slowest but most accurate simulation flow to obtain performance results of a compiled NPU program when executed on a given NPU instance.
-Repository Description
-The repository consists of the following directories:
+指令集架构（ISA）：作为NPU硬件与软件栈之间的中间层。NPU采用超长指令字（VLIW）架构，我们称之为"指令链"，用于控制多个粗粒度级联处理单元。每条指令链可触发数千次运算操作，其本质类似于CISC指令。
 
-compiler: includes the NPU front-end (API and compiler) that users can use to write NPU workloads as Tensorflow Keras Sequential models
-rtl: includes the RTL implementation of the NPU hardware for the Stratix 10 NX FPGA
-scripts: includes testing scripts for C++ and RTL simulation of the NPU benchmark suite used in the FPT'20 paper
-simulator: includes the NPU C++ simulator used for fast NPU performance estimation and architecture exploration
-List of NPU-related Publications
-A. Boutros, E. Nurvitadhi, and V. Betz. "Specializing for Efficiency: Customizing AI Inference Processors on FPGAs". In the IEEE International Conference on Microelectronics (ICM), 2021.
-A. Boutros, E. Nurvitadhi, R. Ma, S. Gribok, Z. Zhao, J. Hoe, V. Betz, and M. Langhammer. "Beyond Peak Performance: Comparing the Real Performance of AI-Optimized FPGAs and GPUs". In the IEEE International Conference on Field-Programmable Technology (FPT), 2020.
-D. Kwon, S. Hur, H. Jang, E. Nurvitadhi, J. Kim. "Scalable Multi-FPGA Acceleration for Large RNNs with Full Parallelism Levels". In the ACM/IEEE Design Automation Conference (DAC), 2020.
-E. Nurvitadhi, A. Boutros, P. Budhkar, A. Jafari, D. Kwon, D. Sheffield, A. Prabhakaran, K. Gururaj, P. Appana, and M. Naik. "Scalable Low-Latency Persistent Neural Machine Translation on CPU Server with Multiple FPGAs". In the IEEE International Conference on Field-Programmable Technology (FPT), 2019.
-E. Nurvitadhi, D. Kwon, A. Jafari, A. Boutros, J. Sim, P. Tomson, H. Sumbul, G. Chen, P. Knag, R. Kumar, R. Krishnamurthy, S. Gribok, B. Pasca, M. Langhammer, D. Marr, and A. Dasu. "Why Compete When You Can Work Together: FPGA-ASIC Integration for Persistent RNNs". In the IEEE International Symposium on Field-Programmable Custom Computing Machines (FCCM), 2019.
-E. Nurvitadhi, D. Kwon, A. Jafari, A. Boutros, J. Sim, P. Tomson, H. Sumbul, G. Chen, P. Knag, R. Kumar, R. Krishnamurthy, S. Gribok, B. Pasca, M. Langhammer, D. Marr, and A. Dasu. "Evaluating and Enhancing Intel Stratix 10 FPGAs for Persistent Real-Time AI". In the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA), 2019.
-Citation
+NPU编译器：将用户以TensorFlow Keras顺序模型编写的工作负载转换为NPU可执行二进制文件。该编译器为NPU架构支持的每个运算（如矩阵向量乘法、加法、激活等）实现底层API，并基于这些API构建支持模型/层（如Dense、RNN、GRU、LSTM）的Keras接口。最终输出可被NPU覆盖层执行的VLIW二进制指令。
+
+功能模拟器：对编译后的NPU指令进行功能级仿真，验证其功能正确性并生成用于C++和RTL仿真的黄金参考结果。
+
+C++模拟器：采用C++编写的细粒度NPU性能模拟器，可快速评估编译后NPU程序在特定架构参数下的运行性能。该工具支持NPU覆盖层设计空间探索和程序优化。
+
+RTL仿真：最精确但耗时最长的仿真流程，用于获取编译后NPU程序在指定NPU实例上的精确性能数据。
+
+## 代码仓库结构
+本仓库包含以下目录：
+compiler：包含NPU前端（API和编译器），用户可通过TensorFlow Keras顺序模型编写NPU工作负载
+rtl：包含针对Stratix 10 NX FPGA的NPU硬件RTL实现
+scripts：包含用于FPT'20论文中NPU基准测试套件的C++和RTL仿真脚本
+simulator：包含用于快速性能评估和架构探索的NPU C++模拟器
+patch: 用于运行真实FPGA的，需要设备
+
+## List of NPU-related Publications
+1. [Boutros, E. Nurvitadhi, and V. Betz. "Specializing for Efficiency: Customizing AI Inference Processors on FPGAs". In the IEEE International Conference on Microelectronics (ICM), 2021](../doc/01_icm2021_specialization.pdf)
+
+1. [Boutros, E. Nurvitadhi, R. Ma, S. Gribok, Z. Zhao, J. Hoe, V. Betz, and M. Langhammer. "Beyond Peak Performance: Comparing the Real Performance of AI-Optimized FPGAs and GPUs". In the IEEE International Conference on Field-Programmable Technology (FPT), 2020.](../doc/02_beyond-peak-performance-white-paper.pdf)
+
+1. [Kwon, S. Hur, H. Jang, E. Nurvitadhi, J. Kim. "Scalable Multi-FPGA Acceleration for Large RNNs with Full Parallelism Levels". In the ACM/IEEE Design Automation Conference (DAC), 2020.](../doc/03_Scalable_Multi-FPGA_Acceleration_for_Large_RNNs_with_Full_Parallelism_Levels.pdf)
+
+1. [Nurvitadhi, A. Boutros, P. Budhkar, A. Jafari, D. Kwon, D. Sheffield, A. Prabhakaran, K. Gururaj, P. Appana, and M. Naik. "Scalable Low-Latency Persistent Neural Machine Translation on CPU Server with Multiple FPGAs". In the IEEE International Conference on Field-Programmable Technology (FPT), 2019.](../doc/04_Scalable_Low-Latency_Persistent_Neural_Machine_Translation_on_CPU_Server_with_Multiple_FPGAs.pdf)
+
+1. [Nurvitadhi, D. Kwon, A. Jafari, A. Boutros, J. Sim, P. Tomson, H. Sumbul, G. Chen, P. Knag, R. Kumar, R. Krishnamurthy, S. Gribok, B. Pasca, M. Langhammer, D. Marr, and A. Dasu. "Why Compete When You Can Work Together: FPGA-ASIC Integration for Persistent RNNs". In the IEEE International Symposium on Field-Programmable Custom Computing Machines (FCCM), 2019.](../doc/05_Why_Compete_When_You_Can_Work_Together_FPGA-ASIC_Integration_for_Persistent_RNNs.pdf)
+
+1. [Nurvitadhi, D. Kwon, A. Jafari, A. Boutros, J. Sim, P. Tomson, H. Sumbul, G. Chen, P. Knag, R. Kumar, R. Krishnamurthy, S. Gribok, B. Pasca, M. Langhammer, D. Marr, and A. Dasu. "Evaluating and Enhancing Intel Stratix 10 FPGAs for Persistent Real-Time AI". In the ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA), 2019.](../doc/06_Evaluating_The_Highly-Pipelined_Intel_Stratix_10_FPGA_Architecture_Using_Open-Source_Benchmarks.pdf)
+
+## Citation
 If you use the NPU code in this repo for your research, please cite the following paper:
 
 A. Boutros, E. Nurvitadhi, R. Ma, S. Gribok, Z. Zhao, J. Hoe, V. Betz, and M. Langhammer. "Beyond Peak Performance: Comparing the Real Performance of AI-Optimized FPGAs and GPUs". In the IEEE International Conference on Field-Programmable Technology (FPT), 2020.
 You can use the following BibTex entry:
-
-@article{npu_s10_nx,
-  title={{Beyond Peak Performance: Comparing the Real Performance of AI-Optimized FPGAs and GPUs}},
-  author={Boutros, Andrew and others},
-  booktitle={IEEE International Conference on Field-Programmable Technology (ICFPT)},
-  year={2020}
-}
-Pages 1
-Find a page…
-Home
-What is the Neural Processing Unit?
-The NPU Framework
-Repository Description
-List of NPU-related Publications
-Citation
-Clone this wiki locally
-https://github.com/intel/fpga-npu.wiki.git
-Footer
-© 2025 GitHub, In

@@ -283,7 +283,7 @@ class npu_isa_sim (object):
               temp = temp
             elif(cur_chain.mfu0_mul_op_type=='mul'):
               temp = (self.mfu0_vrf1[mfu0_vrf1_idx[b]][j] * temp).astype(acc_d_type)
-              
+
             else:
               raise AssertionError()
 
