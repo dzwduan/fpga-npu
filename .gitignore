@@ -1,0 +1,9 @@
+scripts/reports/
+.vscode/
+simulator/*_log
+simulator/register_files
+compiler/dump
+compiler/__pycache__
+simulator/src/obj
+simulator/gen_done
+simulator/npu_sim

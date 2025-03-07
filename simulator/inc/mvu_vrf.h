@@ -30,7 +30,7 @@ public:
     // Constructor
     MVUVRF (std::string t_name, unsigned int t_tile_id);
     // Clock function
-    void clock();
+    void clock() override;
     // Getters and setters
     Input<std::vector<TYPE>> *getPortVrfWdata();
     Input<unsigned int> *getPortVrfWaddr();

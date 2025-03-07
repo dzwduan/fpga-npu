@@ -1,4 +1,4 @@
-#include "register_file.h"
+#include "../inc/register_file.h"
 
 // Helper function for initializing vector register files
 void init_rf(std::vector<std::vector<TYPE>> &rf, unsigned int depth){

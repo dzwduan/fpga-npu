@@ -1,9 +1,16 @@
-# DISCONTINUATION OF PROJECT #  
-This project will no longer be maintained by Intel.  
-Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.  
-Intel no longer accepts patches to this project.  
- If you have an ongoing need to use this project, are interested in independently developing it, or would like to maintain patches for the open source software community, please create your own fork of this project.  
-  
+# Intel开源NPU设计
+
+# 运行方式
+```
+bash run.sh
+```
+
+
+# 已知存在的问题
+
+1. performance model running simulation ... 时CPU几乎没有占用，等了非常久
+1. 在compiler.py中官方提到了NPU前端没有MFU(数学函数单元)中非线性激活函数的软件实现等一系列架构的问题
+
 # The Neural Processing Unit (NPU)
 
 ## Introduction

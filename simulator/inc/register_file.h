@@ -30,7 +30,7 @@ public:
 	// Constructor
 	RegisterFile(std::string t_name, unsigned int t_depth, std::string *t_file_name = nullptr);
 	// Clock function
-	void clock();
+	void clock() override;
 	// Getter functions
 	Input<unsigned int>* getPortRaddr();
 	Output<T>* getPortRdata();

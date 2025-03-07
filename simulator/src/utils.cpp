@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../inc/utils.h"
 
 // Operator overload for printing a vector
 template <typename T>

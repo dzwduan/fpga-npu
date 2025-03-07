@@ -32,6 +32,23 @@ Current Limitations:
 The main class in this code is the npu class. It is used to hold all the architecture parameters, architecture states 
 (e.g. mrfs, vrfs, input buffer, output buffer, etc.), memory allocation book-keeping, tagging info, fsim class, and 
 parameters for instruction field widths as well. 
+
+当前限制：
+--------------------
+- NPU前端没有MFU(数学函数单元)中非线性激活函数的软件实现。
+	对这些单元的指令始终设置为直通模式，但执行它们的延迟始终会被计入(在模拟中)，并且硬件查找表在FPGA上已实现。
+- Keras前端不会将指定层的实际权重/输入传递给NPU性能模拟器或RTL MIF文件生成。
+	会在底层生成符合NPU支持精度的合成随机权重/输入。
+- NPU RTL实现了2个相同的核心，每个核心以批处理-3方式运行(总批处理-6)。然而，为了简化，前端和
+	模拟器将其视为单个核心。在RTL模拟过程中，两个核心都被馈送相同的输入集，
+	并且它们的输出会与功能和性能模拟器进行验证。
+- Keras前端支持有限数量的层：Dense、SimpleRNN、GRU、LSTM
+'''
+
+'''
+此代码中的主要类是npu类。它用于保存所有架构参数、架构状态
+(如mrfs、vrfs、输入缓冲区、输出缓冲区等)、内存分配记录、标记信息、fsim类以及
+指令字段宽度的参数等。
 '''
 class npu:
 	def __init__(self, arch_params, flow_opts):

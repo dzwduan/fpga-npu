@@ -28,7 +28,7 @@ public:
     // Constructor
     Tile (std::string t_name, unsigned int t_tile_id);
     // Clock function
-    void clock();
+    void clock() override;
     // Getter functions
     Input<std::vector<TYPE>> *getPortVrfWdata();
     Input<unsigned int> *getPortVrfWaddr();

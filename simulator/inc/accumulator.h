@@ -24,7 +24,7 @@ public:
     // Constructor
     Accumulator (std::string t_name, unsigned int t_accum_id);
     // Clock function
-    void clock();
+    void clock() override;
     // Getter functions
     std::string getName();
     unsigned int getId();

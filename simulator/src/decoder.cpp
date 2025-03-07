@@ -1,4 +1,4 @@
-#include "decoder.h"
+#include "../inc/decoder.h"
 
 // Decoder constructor
 Decoder::Decoder(std::string t_name) : Module (t_name) {
@@ -18,7 +18,7 @@ Decoder::Decoder(std::string t_name) : Module (t_name) {
     ld_mOP_channel   = new Channel<ld_mOP> (t_name+"_ld_mOP", FIFO_DEPTH, 1);
 
     // InitialiZe local variables
-    ld_counter = 0; 
+    ld_counter = 0;
     ld_batch_counter = 0;
     mvu_counter = 0;
     mvu_pipeline_counter = 0;

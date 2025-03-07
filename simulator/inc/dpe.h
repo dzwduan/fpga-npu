@@ -29,7 +29,7 @@ public:
 	// Constructor
 	DPE (std::string t_name, unsigned int t_dpe_id, unsigned int t_tile_id);
 	// Clock function
-	void clock();
+	void clock() override;
 	// Getter functions
 	std::string getName();
 	Input<std::vector<TYPE>> *getPortVSeq();

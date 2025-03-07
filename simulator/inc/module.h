@@ -15,7 +15,7 @@ public:
 	//Getter functions
 	std::string getName() { return name; }
 	// Defines what happens in this module every clock cycle (analogous to always block) 
-	virtual void clock() { }
+	virtual void clock() { } 
 	
 private:
 	// Module name
