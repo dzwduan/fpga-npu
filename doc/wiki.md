@@ -35,6 +35,7 @@ patch: 用于运行真实FPGA的，需要设备
 1. [support GNN](../doc/A_Software-Programmable_Neural_Processing_Unit_for_Graph_Neural_Network_Inference_on_FPGAs.pdf)
 1. [Hotchips31](../doc/HC31_T2_Microsoft_CarrieChiouChung.pdf)
 1. [老石谈芯article](https://shilicon.com/archives/180)
+1. [cs217](https://zhuanlan.zhihu.com/p/329789414)
 
 
 ## List of NPU-related Publications
