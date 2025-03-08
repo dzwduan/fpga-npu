@@ -27,6 +27,14 @@ scripts：包含用于FPT'20论文中NPU基准测试套件的C++和RTL仿真脚�
 simulator：包含用于快速性能评估和架构探索的NPU C++模拟器
 patch: 用于运行真实FPGA的，需要设备
 
+## 架构相关
+
+1. [A_Configurable_Cloud-Scale_DNN_Processor_for_Real-Time_AI](../doc/A_Configurable_Cloud-Scale_DNN_Processor_for_Real-Time_AI.pdf)
+1. [Serving DNNs in RealTime at Datacenter Scale with Project Brainwave](../doc/mi0218_Chung-2018Mar25.pdf)
+1. [Brainwave-Datacenter-Chung-Microsoft](../doc/HC29.22622-Brainwave-Datacenter-Chung-Microsoft-2017_08_11_2017.compressed.pdf)
+1. [support GNN](../doc/A_Software-Programmable_Neural_Processing_Unit_for_Graph_Neural_Network_Inference_on_FPGAs.pdf)
+1. [老石谈芯article](https://shilicon.com/archives/180)
+
 ## List of NPU-related Publications
 1. [Boutros, E. Nurvitadhi, and V. Betz. "Specializing for Efficiency: Customizing AI Inference Processors on FPGAs". In the IEEE International Conference on Microelectronics (ICM), 2021](../doc/01_icm2021_specialization.pdf)
 
