@@ -18,4 +18,5 @@ def npu_dense(npu, layer_name, layer_idx, num_inputs, time_steps, input_size, ou
 
 
     # Allocate output vectors
-    h = 
+    # h = 
+    pass
