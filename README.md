@@ -17,3 +17,10 @@ bash run.sh
 1. performance model running simulation ... 时CPU几乎没有占用，等了非常久
 1. 在compiler.py中官方提到了NPU前端没有MFU(数学函数单元)中非线性激活函数的软件实现等一系列架构的问题
 
+
+# src目录
+用于存放demo , 实现的顺序如下：
+1. compiler + function simulator 
+1. performance simulator 
+1. sv + verilator / dc
+1. add transformer

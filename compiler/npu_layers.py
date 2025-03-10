@@ -4,9 +4,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = "2"
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
+from keras import layers
 
-from compiler import *
+from compiler import *  # noqa: F403
 
 def npu_dense(npu, layer_name, layer_idx, num_inputs, time_steps, input_size, output_size, w_data, dest_memspace, inputs=None, activation=None, style='normal', last_layer=0):
     SIM_BATCH = 3

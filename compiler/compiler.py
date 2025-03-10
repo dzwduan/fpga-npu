@@ -396,7 +396,7 @@ class npu:
 				vrf_id=0x3<<(2*self.NTILE+2)
 			elif(inst.vrf_id1_op=='mfu0.vrf1'):
 				vrf_id=0x3<<(2*self.NTILE+4)
-			elif(inst.vrf_id1_op=='mfu1.vrf0'):
+			elif(inst.vrf_id1_op=='mfu1.vrf0'): 
 				vrf_id=0x3<<(2*self.NTILE+6)
 			elif(inst.vrf_id1_op=='mfu1.vrf1'):
 				vrf_id=0x3<<(2*self.NTILE+8)

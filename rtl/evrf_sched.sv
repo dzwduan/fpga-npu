@@ -27,14 +27,14 @@ module evrf_sched # (
 	 parameter NUM_ACCUM= `NUM_ACCUM,
 	 parameter ACCIDW	  = `ACCIDW,
 	 parameter VRFIDW   = `VRFIDW,
-    parameter MIW_MVU  = `MIW_MVU,
-    parameter UIW_MVU  = `UIW_MVU,
-    parameter MIW_EVRF = `MIW_EVRF,
-    parameter UIW_EVRF = `UIW_EVRF,
-    parameter MIW_MFU  = `MIW_MFU,
-    parameter UIW_MFU  = `UIW_MFU,
-    parameter MIW_LD   = `MIW_LD,
-    parameter UIW_LD   = `UIW_LD,
+    MIW stands for "Macro Instruction Width" in this context. It defines the bit width of macro instructions for different components of the neural processing unit:
+
+    - `MIW_MVU`: Width of Matrix Vector Unit macro instructions
+    - `MIW_EVRF`: Width of External Vector Register File macro instructions
+    - `MIW_MFU`: Width of Math Function Unit macro instructions
+    - `MIW_LD`: Width of Load macro instructions
+
+    These parameters specify how many bits are used to encode each type of macro instruction, which the scheduler then breaks down into micro-instructions (UIW) for execution.
     parameter MICW     = `MICW,
     // others
     parameter QDEPTH   = `QDEPTH,  // queue depth

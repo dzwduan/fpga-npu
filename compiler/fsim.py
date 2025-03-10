@@ -121,6 +121,20 @@ class chain (object):
 ### Class for ISA simulator
 class npu_isa_sim (object):
   def __init__(self,inst_q, ibuf_q, mvu_vrfs, ext_vrf, mfu0_vrf0, mfu0_vrf1, mfu1_vrf0, mfu1_vrf1, ntile, ndpe, nlane, vrf_init_sz):
+    '''
+    inst_q: inst queue
+    ibuf_q: input buffer queue
+    mvu_vrfs: 二维的mvu数据
+    ext_vrf: eVRF数据, 可跳过 MVU, 执行没有matrix-vector操作的指令
+    mfu0_vrf0: MFU0里面有两个VRF
+    mfu0_vrf1: 
+    mfu1_vrf0: MFU1里面有两个VRF
+    mfu1_vrf1:
+    ntile: tile的数量
+    ndpe: DPE的数量
+    nlane: lane的数量
+    vrf_init_sz: VRF的初始化大小
+    '''
     self.inst_q = inst_q
     self.ibuf_q = ibuf_q
     self.obuf_q = []
